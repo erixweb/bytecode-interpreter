@@ -1,0 +1,8 @@
+# Bytecode Interpreter
+
+```C++
+PUSH, 3, // -> PUSH 3 TO THE STACK
+PUSH, 5, // -> PUSH 5 TO THE STACK
+ADD, // -> ADD THE TWO NUMBERS ON THE STACK
+PRINT, // -> LOG IN CONSOLE
+```

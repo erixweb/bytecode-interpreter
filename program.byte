@@ -1,0 +1,4 @@
+PUSH_STR, "Hello World",
+DEFINE, "msg",
+LOAD_DEF, "msg",
+PRINT,

@@ -11,4 +11,4 @@ if %errorlevel% neq 0 (
 
 powershell -Command "Write-Host '=> Compilando Bytecode Interpreter.' -ForegroundColor Green"
 
-g++ .\main.cpp .\utils\check_type.cpp .\api\operations.cpp -o bint
+"g++ .\main.cpp .\utils\check_type.cpp .\api\operations.cpp .\parser\parser.cpp -o bint"

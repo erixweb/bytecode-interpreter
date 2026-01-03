@@ -25,6 +25,7 @@ void add(std::vector<std::variant<int, std::string>>& stack)
         std::cerr << "Error: ADD expects integer operands." << std::endl;
     }
 }
+
 void sub(std::vector<std::variant<int, std::string>>& stack) 
 {
     if (stack.size() < 2) {

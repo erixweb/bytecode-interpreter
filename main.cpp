@@ -7,15 +7,17 @@
 #include "./parser/parser.hpp"
 #include "./instructions.h"
 
-int main()
+int main(int argc, char *argv[])
 {
+    std::string fileName = argv[1];
+    std::string fileContents = loadFile(fileName);
 
-    std::vector<std::variant<int, std::string>> stack;
-    std::string fileContents = loadFile("program.byte");
-    if (fileContents.empty()) {
+    if (fileContents.empty())
+    {
         return 1;
     }
 
+    std::vector<std::variant<int, std::string>> stack;
 
     std::vector<std::variant<int, std::string>> instructions = fileToVector(fileContents);
 
@@ -82,8 +84,8 @@ int main()
                     return 1;
                 }
 
-                { 
-                    std::string varName = std::get<std::string>(instructions[++i]); 
+                {
+                    std::string varName = std::get<std::string>(instructions[++i]);
                     std::variant<int, std::string> varValue = stack.back();
                     stack.pop_back();
 
@@ -91,31 +93,25 @@ int main()
                 }
                 break;
             case LOAD_DEF:
-                /*
-                    PUSH_STR, "Erik",
-                    DEFINE, "name",
-                    LOAD_DEF, "name",
-                    PRINT,
-                */
-               // push the variable's value to the stack
-               if (i + 1 < instructions.size() && checkStr(instructions[i + 1]))
-               {
-                   std::string varName = std::get<std::string>(instructions[++i]);
-                   if (variables.count(varName)) {
-                       stack.push_back(variables[varName]);
-                   } else {
-                       std::cerr << "Error: Variable '" << varName << "' not found." << std::endl;
-                       return 1;
-                   }
-               }
-               else
-               {
-                   std::cerr << "Error: LOAD_DEF instruction not followed by a string (variable name)." << std::endl;
-                   return 1;
-               }
-               break;
-
-
+                if (i + 1 < instructions.size() && checkStr(instructions[i + 1]))
+                {
+                    std::string varName = std::get<std::string>(instructions[++i]);
+                    if (variables.count(varName))
+                    {
+                        stack.push_back(variables[varName]);
+                    }
+                    else
+                    {
+                        std::cerr << "Error: Variable '" << varName << "' not found." << std::endl;
+                        return 1;
+                    }
+                }
+                else
+                {
+                    std::cerr << "Error: LOAD_DEF instruction not followed by a string (variable name)." << std::endl;
+                    return 1;
+                }
+                break;
             case ADD:
                 add(stack);
                 break;

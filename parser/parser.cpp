@@ -8,7 +8,7 @@
 #include "../instructions.h"
 
 static const std::unordered_map<std::string, int> OP_CODES = {
-    {"PUSH_I32", PUSH_I32}, {"PUSH_STR", PUSH_STR}, {"ADD", ADD}, {"PRINT", PRINT}, {"CONCAT", CONCAT}, {"SUB", SUB}, {"MUL", MUL}, {"DIV", DIV}, {"DEFINE", DEFINE}, {"LOAD_DEF", LOAD_DEF}};
+    {"PUSH_I32", PUSH_I32}, {"PUSH_STR", PUSH_STR}, {"ADD", ADD}, {"PRINT", PRINT}, {"CONCAT", CONCAT}, {"SUB", SUB}, {"MUL", MUL}, {"DIV", DIV}, {"STORE", STORE}, {"GET", GET}, {"EQUAL", EQUAL}, {"JZ", JZ}, {"JMP", JMP}, {"JNZ", JNZ}, {"EXIT", EXIT}, {"IS_GT", IS_GT}};
 
 std::string trim(std::string s)
 {
